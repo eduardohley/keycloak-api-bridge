@@ -1,0 +1,14 @@
+{
+  "name": "keycloak-bridge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^15.12.2",
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "fastify": "^3.17.0",
+    "fastify-cron": "^1.1.2",
+    "fastify-env": "^2.1.1"
+  }
+}
