@@ -25,12 +25,12 @@ fastify.register(fastifyCron, {
 
 const start = async () => {
   try {
+    createDefaultEnv()
     await fastify.listen(process.env.PORT)
     fastify.cron.startAllJobs()
-    createDefaultEnv()
     await getAdminAccessToken()
   } catch (err) {
-    fastify.log.error(err)
+    console.log(err);
     process.exit(1)
   }
 }

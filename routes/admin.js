@@ -1,6 +1,8 @@
 const axios = require('axios')
 const { tokenSchema } = require('../schemas/admin')
 
+started = false
+
 module.exports.getAdminAccessToken = async () => {
   try {
     const response = await axios.request({
@@ -11,8 +13,12 @@ module.exports.getAdminAccessToken = async () => {
       url: `http://localhost:${process.env.PORT}/token`,
     })
     const { data: { access_token } } = response
-    if (access_token) console.log("Logged in")
     global.kc_access_token = access_token
+
+    if (started) return
+    console.log(process.env.KC_SERVER);
+    if (access_token) console.log("Logged in")
+    started = true
   } catch (error) {
     console.log(error.response.data)
     process.exit(1)

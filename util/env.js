@@ -7,7 +7,7 @@ module.exports.createDefaultEnv = () => {
       flags: 'a'
     })
 
-    logger.write('PORT=3000\n')
+    logger.write('PORT=8081\n')
     logger.write('KC_SERVER=http://localhost:8080\n')
     logger.write('KC_USERNAME=username\n')
     logger.write('KC_PASSWORD=password\n')
