@@ -6,6 +6,10 @@ const { defaultError } = require('./schemas/shared');
 const { createDefaultEnv } = require('./util/env');
 const { getAdminAccessToken } = require('./routes/admin');
 
+fastify.register(require('fastify-cors'), {
+  origin: '*'
+})
+
 fastify.register(require('./routes/admin').AdminRoutes);
 fastify.register(require('./routes/user').UserRoutes);
 fastify.register(require('./routes/role').RoleRoutes);
