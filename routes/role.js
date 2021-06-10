@@ -1,5 +1,6 @@
 const axios = require('axios')
 const { setUserRoleSchema, getRoleSchema } = require('../schemas/role')
+const { translateError } = require('../util/errors')
 const { findByID } = require('./user')
 
 module.exports.RoleRoutes = async (server, options) => {
@@ -20,10 +21,10 @@ module.exports.RoleRoutes = async (server, options) => {
         return role;
       } catch (error) {
         reply.code(error.response.status)
-        return {
+        return translateError({
           error: 'Not Found',
           error_description: 'Role not found'
-        }
+        })
       }
     }
   })
@@ -58,7 +59,7 @@ module.exports.RoleRoutes = async (server, options) => {
         return data
       } catch (error) {
         reply.code(error.response.status)
-        return error.response.data
+        return translateError(error.response.data)
       }
     }
   })

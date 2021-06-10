@@ -1,5 +1,6 @@
 const axios = require('axios')
 const { createUserSchema, deleteUserSchema, updateUserSchema, resetPasswordSchema } = require('../schemas/user')
+const { translateError } = require('../util/errors')
 
 module.exports.findByUsername = async (username) => {
   const response = await axios.request({
@@ -48,7 +49,7 @@ module.exports.UserRoutes = async (server, options) => {
         return data
       } catch (error) {
         reply.code(error.response.status)
-        return error.response.data
+        return translateError(error.response.data)
       }
     }
   })
@@ -74,10 +75,10 @@ module.exports.UserRoutes = async (server, options) => {
         return data
       } catch (error) {
         reply.code(error.response.status)
-        return {
+        return translateError({
           error: 'Not Found',
           error_description: 'User not found'
-        }
+        })
       }
     }
   })
@@ -109,10 +110,10 @@ module.exports.UserRoutes = async (server, options) => {
         return user
       } catch (error) {
         reply.code(error.response.status)
-        return {
+        return translateError({
           error: 'Conflict',
           error_description: error.response.data.errorMessage
-        }
+        })
       }
     }
   })

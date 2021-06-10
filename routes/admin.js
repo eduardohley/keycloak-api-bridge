@@ -1,5 +1,6 @@
 const axios = require('axios')
 const { tokenSchema } = require('../schemas/admin')
+const { translateError } = require('../util/errors')
 
 started = false
 
@@ -51,7 +52,7 @@ module.exports.AdminRoutes = async (server, options) => {
         return { access_token, refresh_token, expires_in, refresh_expires_in }
       } catch (error) {
         reply.code(error.response.status)
-        return error.response.data
+        return translateError(error.response.data)
       }
     }
   })
