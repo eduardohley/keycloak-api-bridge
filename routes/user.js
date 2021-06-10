@@ -139,10 +139,10 @@ module.exports.UserRoutes = async (server, options) => {
         return { id }
       } catch (error) {
         reply.code(error.response.status)
-        return {
+        return translateError({
           error: 'Not Found',
           error_description: error.response.data.error
-        }
+        })
       }
     }
   })
@@ -159,7 +159,7 @@ module.exports.UserRoutes = async (server, options) => {
 
       if (!user) {
         reply.code(404)
-        return { error: 'Not Found', error_description: 'User not found' }
+        return translateError({ error: 'Not Found', error_description: 'User not found' })
       }
 
       try {
@@ -180,10 +180,10 @@ module.exports.UserRoutes = async (server, options) => {
         return { id }
       } catch (error) {
         reply.code(error.response.status)
-        return {
+        return translateError({
           error: 'Not Found',
           error_description: error.response.data.errorMessage
-        }
+        })
       }
     }
   })
@@ -199,7 +199,7 @@ module.exports.UserRoutes = async (server, options) => {
 
       if (!user) {
         reply.code(404)
-        return { error: 'Not Found', error_description: 'User not found' }
+        return translateError({ error: 'Not Found', error_description: 'User not found' })
       }
 
       try {
@@ -226,10 +226,10 @@ module.exports.UserRoutes = async (server, options) => {
         return { id }
       } catch (error) {
         reply.code(error.response.status)
-        return {
+        return translateError({
           error: 'Not Found',
           error_description: error.response.data.error
-        }
+        })
       }
     }
   })
